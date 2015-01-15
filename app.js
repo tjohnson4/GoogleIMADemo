@@ -49,7 +49,15 @@ app.use(function(err, req, res, next) {
     });
 });
 
-https.createServer({
-    key: fs.readFileSync('test/ssl_key/ssl.key'),
-    cert: fs.readFileSync('test/ssl_key/ssl.crt')
-}, app).listen(app.get("port"));
+if (process.env.NODE_ENV === 'production') {
+    /* express */
+    app.listen(app.get("port"), function () {
+        console.log("Express server listening on port " + app.get('port'));
+    });
+} else {
+    https.createServer({
+        key: fs.readFileSync('test/ssl_key/ssl.key'),
+        cert: fs.readFileSync('test/ssl_key/ssl.crt')
+    }, app).listen(app.get("port"));
+}
+
