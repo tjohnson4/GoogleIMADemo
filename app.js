@@ -9,11 +9,11 @@ var fs = require('fs');
 
 var app = express();
 
-var logStream = fs.createWriteStream(__dirname + "/logs/access.log", {flags: 'a'});
+//var logStream = fs.createWriteStream(__dirname + "/logs/access.log", {flags: 'a'});
 
 // uncomment after placing your favicon in /public
 //app.use(favicon(__dirname + '/public/favicon.ico'));
-app.use(logger('combined', {stream: logStream}));
+app.use(logger('combined'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
