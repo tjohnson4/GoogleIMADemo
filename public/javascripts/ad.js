@@ -1,6 +1,6 @@
 window.onload = function () {
 
-    var videos = ["horns.m4v", "bears.m4v", "american.m4v"],
+    var videos = ["https://s3-us-west-1.amazonaws.com/sitemanager/horns.m4v", "https://s3-us-west-1.amazonaws.com/sitemanager/bears.m4v", "https://s3-us-west-1.amazonaws.com/sitemanager/american.m4v"],
         videoIndex = 0;
 
     window.onerror = function (message, url, lineNo) {
@@ -136,7 +136,7 @@ window.onload = function () {
     function playVideo() {
         Logger.log("1.playVideo, ads children count : "+adContainer.children.length);
 
-        videoContent.src = "videos/"+getVideo();
+        videoContent.src = getVideo();
         videoContent.load();
         videoContent.play();
     }
