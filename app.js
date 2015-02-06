@@ -32,12 +32,14 @@ app.use(function(req, res, next) {
 });
 
 router.post("/log", function(req, res, next) {
-    console.log(req.query.msg);
-    fs.appendFile(__dirname + './logs/client.log', new Date().toISOString().
+    console.log(new Date().toISOString().
+        replace(/T/, ' ').      // replace T with a space
+        replace(/\..+/, '') + " " + req.query.msg+ "\n");
+    /*fs.appendFile(__dirname + '/logs/client.log', new Date().toISOString().
         replace(/T/, ' ').      // replace T with a space
         replace(/\..+/, '') + " " + req.query.msg+ "\n", function (err) {
         res.end();
-    });
+    });*/
 });
 
 // development error handler
