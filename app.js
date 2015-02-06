@@ -22,7 +22,6 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 app.set('port', process.env.PORT || 3000);
-app.use('/', router);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
@@ -31,16 +30,7 @@ app.use(function(req, res, next) {
     next(err);
 });
 
-router.post("/log", function(req, res, next) {
-    console.log(new Date().toISOString().
-        replace(/T/, ' ').      // replace T with a space
-        replace(/\..+/, '') + " " + req.query.msg+ "\n");
-    /*fs.appendFile(__dirname + '/logs/client.log', new Date().toISOString().
-        replace(/T/, ' ').      // replace T with a space
-        replace(/\..+/, '') + " " + req.query.msg+ "\n", function (err) {
-        res.end();
-    });*/
-});
+
 
 // development error handler
 // will print stacktrace
@@ -64,7 +54,6 @@ app.use(function(err, req, res, next) {
     });
 });
 
-app.use('/', router);
 
 if (process.env.NODE_ENV === 'production') {
     /* express */
